@@ -5,6 +5,7 @@ const router = Router();
 
 router.post('/', roomController.createRoom);
 router.get('/', roomController.getRooms);
-router.delete('/:id',roomController.deleteRoom);
+router.delete('/:id', roomController.deleteRoom);
+router.put('/:id', roomController.updateRoom);
 
 module.exports = router;

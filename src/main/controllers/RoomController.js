@@ -13,6 +13,24 @@ exports.createRoom = async (req, res) => {
     }
 };
 
+exports.updateRoom = async (req, res) => {
+    const data = {
+        roomName: req.body.roomName,
+        roomSize: req.body.roomSize
+    };
+    try {
+        const roomId = req.params.id;
+        await roomService.updateRoom(data,{
+            where: {
+                id: roomId
+            }
+        });
+        res.status(200).json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.deleteRoom = async (req, res, next) => {
     try {
         const roomId = req.params.id;
