@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Room.hasOne(models.Department,{
-        onDelete:"cascade"
+      Room.hasOne(models.Department, {
+        onDelete: "cascade"
       });
     }
   };
