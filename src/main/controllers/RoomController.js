@@ -7,8 +7,36 @@ exports.createRoom = async (req, res) => {
     };
     try {
         await roomService.createRoom(data)
-        res.json(data);
+        res.status(201).json(data);
     } catch (err) {
         console.log(err);
+    }
+};
+
+exports.deleteRoom = async (req, res, next) => {
+    try {
+        const roomId = req.params.id;
+        await roomService.deleteRoom({
+            where: {
+                id: roomId
+            }
+        });
+        res.status(200).json({
+            data: null,
+            message: `Room ${roomId} has been deleted`
+        });
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.getRooms = async (req, res) => {
+    try {
+        const rooms = await roomService.getRooms();
+        res.status(200).json(rooms);
+    } catch (err) {
+        res.json({
+            message: err
+        });
     }
 };
