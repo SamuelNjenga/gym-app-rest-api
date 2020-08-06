@@ -11,10 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasOne(models.Department,{
-        onDelete:"cascade"
+        onDelete:"cascade",
+        foreignKey:{
+          name:'chairmanId',
+          allowNull:false
+        }
       });
       User.hasOne(models.Trainer,{
-        onDelete:"cascade"
+        onDelete:"cascade",
+        foreignKey:{
+          name:'trainerId',
+          allowNull:false
+        }
       });
 
     }
