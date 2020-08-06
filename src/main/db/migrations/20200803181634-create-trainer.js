@@ -14,6 +14,9 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      email: {
+        type: Sequelize.STRING
+      },
       trainerId: {
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
