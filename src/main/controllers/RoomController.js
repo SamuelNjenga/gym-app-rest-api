@@ -20,7 +20,7 @@ exports.updateRoom = async (req, res) => {
     };
     try {
         const roomId = req.params.id;
-        await roomService.updateRoom(data,{
+        await roomService.updateRoom(data, {
             where: {
                 id: roomId
             }
