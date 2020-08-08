@@ -10,18 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Department.belongsTo(models.User,{
-        foreignKey:{
-          name:'chairmanId',
-          allowNull:false
+      Department.belongsTo(models.User, {
+        foreignKey: {
+          name: 'chairmanId',
+          allowNull: false
         }
-      })
-      Department.belongsTo(models.Room,{
-        foreignKey:{
-          name:'roomId',
-          allowNull:false
+      });
+      Department.belongsTo(models.Room, {
+        foreignKey: {
+          name: 'roomId',
+          allowNull: false
         }
-      })
+      });
+      Department.hasMany(models.Trainer, {
+        onDelete: "cascade",
+        foreignKey: {
+          name: 'departmentId',
+          allowNull: false
+        }
+      });
     }
   };
   Department.init({

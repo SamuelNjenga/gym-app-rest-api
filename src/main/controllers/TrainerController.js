@@ -5,6 +5,7 @@ exports.createTrainer = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         trainerId: req.body.trainerId,
+        departmentId: req.body.departmentId,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber
     };
@@ -21,6 +22,7 @@ exports.updateTrainer = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         trainerId: req.body.trainerId,
+        departmentId: req.body.departmentId,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber
     };

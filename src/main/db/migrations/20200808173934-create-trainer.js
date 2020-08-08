@@ -19,7 +19,18 @@ module.exports = {
       },
       trainerId: {
         type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+      },
+      departmentId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'departments',
+          key: 'id'
+        },
         onDelete: 'CASCADE',
       },
       phoneNumber: {
