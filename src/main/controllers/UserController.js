@@ -1,18 +1,34 @@
 const userService = require('../services/UserService');
+const ReqValidator = require('../utils/validator')
 
 exports.createUser = async (req, res) => {
-    const data = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        userName: req.body.userName,
-        password: req.body.password,
-        gender: req.body.gender,
-        role: req.body.role,
-        phoneNumber: req.body.phoneNumber,
-        idNumber: req.body.idNumber
-    };
+
     try {
+        const valid = await ReqValidator.validate(req, res, {
+            firstName: 'required|string',
+            lastName: 'required|string',
+            email: 'required|integer',
+            userName: 'required|string',
+            roomId: 'required|integer',
+            password: 'required|string',
+            gender: 'required|string',
+            role: 'required|string',
+            phoneNumber: 'required|string',
+            idNumber: 'required|string'
+        })
+        if (!valid) return
+        const data = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            userName: req.body.userName,
+            password: req.body.password,
+            gender: req.body.gender,
+            role: req.body.role,
+            phoneNumber: req.body.phoneNumber,
+            idNumber: req.body.idNumber
+        };
+
         await userService.createUser(data)
         res.status(201).json(data);
     } catch (err) {
@@ -21,18 +37,32 @@ exports.createUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-    const data = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        userName: req.body.userName,
-        password: req.body.password,
-        gender: req.body.gender,
-        role: req.body.role,
-        phoneNumber: req.body.phoneNumber,
-        idNumber: req.body.idNumber
-    };
     try {
+        const valid = await ReqValidator.validate(req, res, {
+            firstName: 'required|string',
+            lastName: 'required|string',
+            email: 'required|integer',
+            userName: 'required|string',
+            roomId: 'required|integer',
+            password: 'required|string',
+            gender: 'required|string',
+            role: 'required|string',
+            phoneNumber: 'required|string',
+            idNumber: 'required|string'
+        })
+        if (!valid) return
+        const data = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            userName: req.body.userName,
+            password: req.body.password,
+            gender: req.body.gender,
+            role: req.body.role,
+            phoneNumber: req.body.phoneNumber,
+            idNumber: req.body.idNumber
+        };
+
         const userId = req.params.id;
         await userService.updateUser(data, {
             where: {
