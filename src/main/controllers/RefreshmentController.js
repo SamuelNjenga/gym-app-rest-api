@@ -1,10 +1,17 @@
 const refreshmentService = require('../services/RefreshmentService');
+const ReqValidator = require('../utils/validator');
 
 exports.createRefreshment = async (req, res) => {
-    const data = {
-        refreshmentName: req.body.refreshmentName
-    };
+
     try {
+        const valid = await ReqValidator.validate(req, res, {
+            refreshmentName: 'required|string'
+        });
+        if (!valid) return;
+        const data = {
+            refreshmentName: req.body.refreshmentName
+        };
+
         await refreshmentService.createRefreshment(data)
         res.status(201).json(data);
     } catch (err) {
@@ -13,10 +20,15 @@ exports.createRefreshment = async (req, res) => {
 };
 
 exports.updateRefreshment = async (req, res) => {
-    const data = {
-        refreshmentName: req.body.refreshmentName
-    };
+
     try {
+        const valid = await ReqValidator.validate(req, res, {
+            refreshmentName: 'required|string'
+        });
+        if (!valid) return;
+        const data = {
+            refreshmentName: req.body.refreshmentName
+        };
         const refreshmentId = req.params.id;
         await refreshmentService.updateRefreshment(data, {
             where: {

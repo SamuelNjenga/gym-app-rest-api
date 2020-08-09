@@ -1,11 +1,19 @@
 const roomService = require('../services/RoomService');
+const ReqValidator = require('../utils/validator');
 
 exports.createRoom = async (req, res) => {
-    const data = {
-        roomName: req.body.roomName,
-        roomSize: req.body.roomSize
-    };
+
     try {
+        const valid = await ReqValidator.validate(req, res, {
+            roomName: 'required|string',
+            roomSize: 'required|integer',
+        });
+        if (!valid) return;
+        const data = {
+            roomName: req.body.roomName,
+            roomSize: req.body.roomSize
+        };
+
         await roomService.createRoom(data)
         res.status(201).json(data);
     } catch (err) {
@@ -14,11 +22,18 @@ exports.createRoom = async (req, res) => {
 };
 
 exports.updateRoom = async (req, res) => {
+
+    try {
+    const valid = await ReqValidator.validate(req, res, {
+        roomName: 'required|string',
+        roomSize: 'required|integer',
+    });
+    if (!valid) return;
     const data = {
         roomName: req.body.roomName,
         roomSize: req.body.roomSize
     };
-    try {
+    
         const roomId = req.params.id;
         await roomService.updateRoom(data, {
             where: {
