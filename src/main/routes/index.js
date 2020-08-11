@@ -5,14 +5,16 @@ const DptRoutes = require('./DepartmentRoutes');
 const TrainerRoutes = require('./TrainerRoutes');
 const EquipmentRoutes = require('./EquipmentRoutes');
 const RefreshmentRoutes = require('./RefreshmentRoutes');
+const LoginRoutes = require('./LoginRoutes');
 
 const router = Router();
 
-router.use('/room',RoomRoutes);
-router.use('/user',UserRoutes);
-router.use('/department',DptRoutes);
-router.use('/trainer', TrainerRoutes);
-router.use('/equipment', EquipmentRoutes);
-router.use('/refreshment',RefreshmentRoutes);
+router.use('/rooms', RoomRoutes);
+router.use('/users', UserRoutes);
+router.use('/departments', DptRoutes);
+router.use('/trainers', TrainerRoutes);
+router.use('/equipments', EquipmentRoutes);
+router.use('/refreshments', RefreshmentRoutes);
+router.use('/login', LoginRoutes);
 
 module.exports = router;

@@ -1,5 +1,10 @@
 const userService = require('../services/UserService');
 const ReqValidator = require('../utils/validator')
+const bcrypt = require('bcrypt')
+
+async function hashPassword(password) {
+    return await bcrypt.hash(password, 10);
+}
 
 exports.createUser = async (req, res) => {
 
@@ -7,9 +12,8 @@ exports.createUser = async (req, res) => {
         const valid = await ReqValidator.validate(req, res, {
             firstName: 'required|string',
             lastName: 'required|string',
-            email: 'required|integer',
+            email: 'required|string|email',
             userName: 'required|string',
-            roomId: 'required|integer',
             password: 'required|string',
             gender: 'required|string',
             role: 'required|string',
@@ -28,9 +32,20 @@ exports.createUser = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             idNumber: req.body.idNumber
         };
-
-        await userService.createUser(data)
-        res.status(201).json(data);
+        const hashedPassword = await hashPassword(data.password);
+        const newUser = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            userName: data.userName,
+            password: hashedPassword,
+            gender: data.gender,
+            role: data.role || 'basic',
+            phoneNumber: data.phoneNumber,
+            idNumber: data.idNumber
+        }
+        await userService.createUser(newUser)
+        res.status(201).json(newUser);
     } catch (err) {
         console.log(err);
     }
@@ -41,9 +56,8 @@ exports.updateUser = async (req, res) => {
         const valid = await ReqValidator.validate(req, res, {
             firstName: 'required|string',
             lastName: 'required|string',
-            email: 'required|integer',
+            email: 'required|string|email',
             userName: 'required|string',
-            roomId: 'required|integer',
             password: 'required|string',
             gender: 'required|string',
             role: 'required|string',
