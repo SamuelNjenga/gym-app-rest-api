@@ -6,6 +6,7 @@ const TrainerRoutes = require('./TrainerRoutes');
 const EquipmentRoutes = require('./EquipmentRoutes');
 const RefreshmentRoutes = require('./RefreshmentRoutes');
 const LoginRoutes = require('./LoginRoutes');
+const SessionRoutes = require('./SessionRoutes')
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/trainers', TrainerRoutes);
 router.use('/equipments', EquipmentRoutes);
 router.use('/refreshments', RefreshmentRoutes);
 router.use('/login', LoginRoutes);
+router.use('/sessions', SessionRoutes)
 
 module.exports = router;
