@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       Room.hasOne(models.Department, {
         onDelete: "cascade"
       });
+      Room.hasMany(models.Session, {
+        onDelete: "cascade",
+        foreignKey: {
+          name: 'roomId',
+          allowNull: false
+        }
+      });
     }
   };
   Room.init({
