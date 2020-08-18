@@ -1,9 +1,9 @@
-const Cloudinary = require('cloudinary').v2;
-const cloudinaryStorage = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 
-const storage = cloudinaryStorage({
-    cloudinary: Cloudinary,
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
     folder: 'gym-app',
 });
 

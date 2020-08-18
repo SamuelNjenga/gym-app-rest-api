@@ -79,3 +79,23 @@ exports.getEquipments = async (req, res) => {
         });
     }
 };
+
+exports.setEquipmentPicture = async (req, res) => {
+    try {
+        req.body.picture = req.file && req.file.secure_url;
+        const valid = await ReqValidator.validate(req, res, {
+            part: 'required',
+            picture: 'required'
+        });
+        if (!valid) return;
+
+        const data = {
+            part: req.body.part,
+            picture: req.body.picture
+        };
+        const equipmentPicture =  await equipmentService.setEquipmentPicture(req.equipment, data)
+        res.status(200).json(equipmentPicture);
+    } catch (err) {
+        Send.error(res, err);
+    }
+};
