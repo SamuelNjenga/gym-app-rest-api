@@ -16,9 +16,7 @@ exports.createUser = async (req, res) => {
             userName: 'required|string',
             password: 'required|string',
             gender: 'required|string',
-            role: 'required|string',
-            phoneNumber: 'required|string',
-            idNumber: 'required|string'
+            role: 'string'
         })
         if (!valid) return
         const data = {
@@ -28,9 +26,7 @@ exports.createUser = async (req, res) => {
             userName: req.body.userName,
             password: req.body.password,
             gender: req.body.gender,
-            role: req.body.role,
-            phoneNumber: req.body.phoneNumber,
-            idNumber: req.body.idNumber
+            role: req.body.role
         };
         const hashedPassword = await hashPassword(data.password);
         const newUser = {
@@ -40,9 +36,7 @@ exports.createUser = async (req, res) => {
             userName: data.userName,
             password: hashedPassword,
             gender: data.gender,
-            role: data.role || 'basic',
-            phoneNumber: data.phoneNumber,
-            idNumber: data.idNumber
+            role: data.role || 'basic'
         }
         await userService.createUser(newUser)
         res.status(201).json(newUser);
@@ -60,9 +54,7 @@ exports.updateUser = async (req, res) => {
             userName: 'required|string',
             password: 'required|string',
             gender: 'required|string',
-            role: 'required|string',
-            phoneNumber: 'required|string',
-            idNumber: 'required|string'
+            role: 'required|string'
         })
         if (!valid) return
         const data = {
@@ -72,9 +64,7 @@ exports.updateUser = async (req, res) => {
             userName: req.body.userName,
             password: req.body.password,
             gender: req.body.gender,
-            role: req.body.role,
-            phoneNumber: req.body.phoneNumber,
-            idNumber: req.body.idNumber
+            role: req.body.role
         };
 
         const userId = req.params.id;

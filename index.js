@@ -6,6 +6,8 @@ require('dotenv/config');
 const bodyParser = require('body-parser');
 const loginService = require('./src/main/services/LoginService');
 
+app.use(express.json({limit: '50mb'}));//Pass json body data;
+app.use(express.urlencoded({limit: '50mb', extended:true}));//Accept data from forms
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());

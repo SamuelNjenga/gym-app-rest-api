@@ -8,16 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      picture: {
+        type: Sequelize.STRING
+      },
       equipmentId: {
         type: Sequelize.INTEGER,
         references: { model: 'equipment', key: 'id' },
         onDelete: 'CASCADE',
-      },
-      picture: {
-        type: Sequelize.STRING
-      },
-      part: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
