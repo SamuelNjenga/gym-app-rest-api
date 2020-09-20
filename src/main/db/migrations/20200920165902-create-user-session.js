@@ -1,33 +1,21 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Sessions', {
+    await queryInterface.createTable('UserSessions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      sessionStartTime: {
-        type: Sequelize.DATE
-      },
-      sessionEndTime: {
-        type: Sequelize.DATE
-      },
-      trainerId: {
+      userId: {
         type: Sequelize.INTEGER,
-        references: { model: 'trainers', key: 'id' },
+        references: { model: 'users', key: 'id' },
         onDelete: 'CASCADE',
       },
-      maxNumberOfAttendants: {
-        type: Sequelize.INTEGER
-      },
-      numberOfAttendantsSoFar: {
-        type: Sequelize.INTEGER
-      },
-      roomId: {
+      sessionId: {
         type: Sequelize.INTEGER,
-        references: { model: 'rooms', key: 'id' },
+        references: { model: 'sessions', key: 'id' },
         onDelete: 'CASCADE',
       },
       createdAt: {
@@ -41,6 +29,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Sessions');
+    await queryInterface.dropTable('UserSessions');
   }
 };

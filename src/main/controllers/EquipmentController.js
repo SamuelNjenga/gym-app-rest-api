@@ -89,13 +89,13 @@ exports.setEquipmentPicture = async (req, res) => {
         const id = req.params.id
         console.log(id);
         const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
-            folder: 'wfdj7hej'
+            folder: 'gym-app'
         })
         console.log(uploadedResponse);
 
         const data = {
             equipmentId: id,
-            picture: uploadedResponse.secure_url
+            picture: uploadedResponse.public_id
 
         };
         await equipmentService.createEquipmentPicture(data)
@@ -108,3 +108,4 @@ exports.setEquipmentPicture = async (req, res) => {
         })
     }
 };
+

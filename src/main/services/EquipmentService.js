@@ -10,7 +10,7 @@ exports.updateEquipment = async (data, root) => {
 };
 
 exports.getEquipments = async () => {
-	return db.Equipment.findAll();
+	return db.Equipment.findAll({ include: db.EquipmentPicture });
 };
 
 exports.deleteEquipment = async (data) => {

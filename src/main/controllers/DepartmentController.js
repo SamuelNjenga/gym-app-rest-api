@@ -1,7 +1,7 @@
 const dptService = require('../services/DepartmentService')
 const ReqValidator = require('../utils/validator')
 
-exports.createDpt = async (req, res) => {
+exports.createDpt = async (req,res) => {
   try {
     const valid = await ReqValidator.validate(req, res, {
       departmentName: 'required|string',
@@ -18,10 +18,10 @@ exports.createDpt = async (req, res) => {
       roomName: req.body.roomName,
       roomId: req.body.roomId
     }
-
     await dptService.createDepartment(data)
-    res.status(201).json(data)
-  } catch (err) {
+        res.status(201).json(data);
+  }
+  catch (err) {
     console.log(err)
   }
 }

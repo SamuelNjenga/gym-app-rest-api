@@ -9,6 +9,7 @@ exports.createSession = async (req, res) => {
             sessionEndTime: 'required',
             trainerId: 'required|integer',
             maxNumberOfAttendants: 'required|integer',
+            numberOfAttendantsSoFar: 'required|integer',
             roomId: 'required|integer'
         });
         if (!valid) return;
@@ -16,6 +17,7 @@ exports.createSession = async (req, res) => {
             sessionStartTime: req.body.sessionStartTime,
             sessionEndTime: req.body.sessionEndTime,
             trainerId: req.body.trainerId,
+            numberOfAttendantsSoFar: req.body.numberOfAttendantsSoFar,
             maxNumberOfAttendants: req.body.maxNumberOfAttendants,
             roomId: req.body.roomId
         };
@@ -34,6 +36,7 @@ exports.updateSession = async (req, res) => {
             sessionEndTime: 'required',
             trainerId: 'required|integer',
             maxNumberOfAttendants: 'required|integer',
+            numberOfAttendantsSoFar: 'required|integer',
             roomId: 'required|integer'
         });
         if (!valid) return;
@@ -41,6 +44,7 @@ exports.updateSession = async (req, res) => {
             sessionStartTime: req.body.sessionStartTime,
             sessionEndTime: req.body.sessionEndTime,
             trainerId: req.body.trainerId,
+            numberOfAttendantsSoFar: req.body.numberOfAttendantsSoFar,
             maxNumberOfAttendants: req.body.maxNumberOfAttendants,
             roomId: req.body.roomId
         };

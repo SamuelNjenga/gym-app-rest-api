@@ -7,6 +7,7 @@ const EquipmentRoutes = require('./EquipmentRoutes');
 const RefreshmentRoutes = require('./RefreshmentRoutes');
 const LoginRoutes = require('./LoginRoutes');
 const SessionRoutes = require('./SessionRoutes')
+const UserSessionRoutes = require('./UserSessionRoutes')
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use('/equipments', EquipmentRoutes);
 router.use('/refreshments', RefreshmentRoutes);
 router.use('/login', LoginRoutes);
 router.use('/sessions', SessionRoutes)
+router.use('/userssessions', UserSessionRoutes)
 
 module.exports = router;

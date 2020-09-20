@@ -10,6 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Session.hasMany(models.UserSession, {
+        onDelete: "cascade",
+        foreignKey: {
+          name: 'sessionId',
+          allowNull: false
+        }
+      });
       Session.belongsTo(models.Trainer, {
         foreignKey: {
           name: 'trainerId',
@@ -25,10 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Session.init({
-    sessionStartTime: DataTypes.TIME,
-    sessionEndTime: DataTypes.TIME,
+    sessionStartTime: DataTypes.DATE,
+    sessionEndTime: DataTypes.DATE,
     trainerId: DataTypes.INTEGER,
     maxNumberOfAttendants: DataTypes.INTEGER,
+    numberOfAttendantsSoFar: DataTypes.INTEGER,
     roomId: DataTypes.INTEGER
   }, {
     sequelize,
