@@ -8,6 +8,7 @@ const RefreshmentRoutes = require('./RefreshmentRoutes');
 const LoginRoutes = require('./LoginRoutes');
 const SessionRoutes = require('./SessionRoutes')
 const UserSessionRoutes = require('./UserSessionRoutes')
+const ProgramRoutes = require('./ProgramRoutes')
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use('/users', UserRoutes);
 router.use('/departments', DptRoutes);
 router.use('/trainers', TrainerRoutes);
 router.use('/equipments', EquipmentRoutes);
+router.use('/programs', ProgramRoutes);
 router.use('/refreshments', RefreshmentRoutes);
 router.use('/login', LoginRoutes);
 router.use('/sessions', SessionRoutes)

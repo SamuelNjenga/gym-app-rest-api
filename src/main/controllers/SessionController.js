@@ -28,6 +28,27 @@ exports.createSession = async (req, res) => {
     }
 };
 
+
+exports.createUserSession = async (req, res) => {
+
+    try {
+        const valid = await ReqValidator.validate(req, res, {
+            userId: 'required|integer',
+            sessionId: 'required|integer',
+        });
+        if (!valid) return;
+        const data = {
+            userId: req.body.userId,
+            sessionId: req.body.sessionId
+        };
+
+        await userSessionService.createUserSession(data)
+        res.status(201).json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.updateSession = async (req, res) => {
 
     try {

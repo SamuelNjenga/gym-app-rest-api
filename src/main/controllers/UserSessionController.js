@@ -1,4 +1,5 @@
 const userSessionService = require('../services/UserSessionService');
+const sessionService = require('../services/SessionService');
 const ReqValidator = require('../utils/validator');
 
 exports.createUserSession = async (req, res) => {
@@ -13,7 +14,18 @@ exports.createUserSession = async (req, res) => {
             userId: req.body.userId,
             sessionId: req.body.sessionId
         };
-
+        const sessionId = data.sessionId
+        const allData = await sessionService.getOneSession({where:{id:sessionId}})
+        const maxSoFar = allData.maxNumberOfAttendants
+        const noOfAttendantsSoFar = allData.numberOfAttendantsSoFar
+        if(noOfAttendantsSoFar + 1 > maxSoFar) {
+         return res.status(200).json('Max Number has been reached');
+        }
+        await sessionService.incrementSession({numberOfAttendantsSoFar : 1}, {
+            where: {
+                id: sessionId
+            }
+        });
         await userSessionService.createUserSession(data)
         res.status(201).json(data);
     } catch (err) {

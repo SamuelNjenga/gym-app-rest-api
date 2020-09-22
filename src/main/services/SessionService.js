@@ -8,6 +8,14 @@ exports.updateSession = async (data, root) => {
     return db.Session.update(data, root);
 };
 
+exports.getOneSession = async (data) => {
+    return db.Session.findOne(data);
+};
+
+exports.incrementSession = async (data, root) => {
+    return db.Session.increment(data, root);
+};
+
 exports.getSessions = async () => {
     return db.Session.findAll();
 };
