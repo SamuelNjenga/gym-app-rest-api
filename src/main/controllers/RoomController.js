@@ -73,3 +73,17 @@ exports.getRooms = async (req, res) => {
         });
     }
 };
+
+exports.getOneRoom = async (req, res) => {
+    try {
+        const roomId = req.params.id
+        console.log(roomId);
+        const room = await roomService.getRoom({where: {id:roomId}})
+        console.log(room.id);
+        res.status(200).json(room);
+    } catch (err) {
+        res.json({
+            message: err
+        });
+    }
+};

@@ -3,6 +3,7 @@ const ReqValidator = require('../utils/validator');
 const {
     cloudinary
 } = require('../utils/cloudinary')
+const db = require('../db/models/index');
 
 exports.createProgram = async (req, res) => {
     try {
@@ -71,6 +72,20 @@ exports.getPrograms = async (req, res) => {
     try {
         const programs = await programService.getPrograms();
         res.status(200).json(programs);
+    } catch (err) {
+        res.json({
+            message: err
+        });
+    }
+};
+
+exports.getOneProgram = async (req, res) => {
+    try {
+        const programId = req.params.id
+        console.log(programId);
+        const program = await programService.getProgram({where: {id:programId},include: db.ProgramPicture})
+        console.log(program.id);
+        res.status(200).json(program);
     } catch (err) {
         res.json({
             message: err

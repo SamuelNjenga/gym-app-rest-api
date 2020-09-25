@@ -8,6 +8,10 @@ exports.updateRoom = async (data, root) => {
 	return db.Room.update(data, root);
 };
 
+exports.getRoom = async (data) => {
+	return db.Room.findOne(data);
+};
+
 exports.getRooms = async () => {
 	return db.Room.findAll();
 };

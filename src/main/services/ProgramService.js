@@ -13,6 +13,10 @@ exports.getPrograms = async () => {
 	return db.Program.findAll({ include: db.ProgramPicture });
 };
 
+exports.getProgram = async (data) => {
+	return db.Program.findOne(data);
+};
+
 exports.deleteProgram = async (data) => {
 	return db.Program.destroy(data);
 };

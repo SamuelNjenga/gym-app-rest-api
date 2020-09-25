@@ -5,6 +5,7 @@ const router = Router();
 
 router.post('/', programController.createProgram);
 router.get('/', programController.getPrograms);
+router.get('/:id', programController.getOneProgram);
 router.delete('/:id', programController.deleteProgram);
 router.put('/:id', programController.updateProgram);
 router.post('/:id/pictures',programController.setProgramPicture);
